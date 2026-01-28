@@ -21,3 +21,105 @@ Minimax
         ELSE
             RETURN min(Minimax(children))
         END IF
+Uniform cost search
+
+                    INSERT (0, Start) into PQ      // (cost, node)
+                    WHILE PQ not empty DO
+                        (Cost, Node) ← REMOVE node with minimum cost from PQ
+
+                        IF Node = Goal THEN
+                            PRINT "Goal Reached with cost", Cost
+                            EXIT
+                        END IF
+
+                        IF Node not in Visited THEN
+                            ADD Node to Visited
+
+                            FOR each Neighbor of Node DO
+                                INSERT (Cost + EdgeCost, Neighbor) into PQ
+                            END FOR
+                        END IF
+                    END WHILE
+Greedy Best First search
+
+                         CREATE priority queue PQ
+                         INSERT Start using heuristic
+
+                         WHILE PQ not empty DO
+                             Node ← REMOVE lowest heuristic node
+                             PRINT Node
+                             IF Node = Goal THEN EXIT
+                             INSERT neighbors into PQ
+                         END WHILE
+Breadth First search   
+
+                      CREATE empty queue Q
+                      CREATE empty set Visited
+
+                      ADD StartNode to Visited
+                      ENQUEUE StartNode into Q
+
+                     WHILE Q is not empty DO
+                         CurrentNode ← DEQUEUE Q
+                         VISIT CurrentNode
+
+                         FOR each Neighbor of CurrentNode in Graph DO
+                             IF Neighbor not in Visited THEN
+                                ADD Neighbor to Visited
+                                ENQUEUE Neighbor into Q
+                            END IF
+                        END FOR
+                    END WHILE
+Alphabeta
+
+          IF Depth = 0 THEN RETURN value
+
+          IF IsMax THEN
+              FOR each child DO
+                  α ← max(α, AlphaBeta(child))
+                  IF β ≤ α THEN BREAK
+              END FOR
+          ELSE
+              FOR each child DO
+                  β ← min(β, AlphaBeta(child))
+                  IF β ≤ α THEN BREAK
+              END FOR
+          END IF
+A*search
+
+          CREATE priority queue PQ
+          INSERT (f=0, Start)
+
+          WHILE PQ not empty DO
+              Node ← REMOVE node with lowest f
+              IF Node = Goal THEN
+                  PRINT "Goal Reached"
+                  EXIT
+              END IF
+              FOR each Neighbor DO
+                  g ← path cost
+                  f ← g + heuristic
+                  INSERT Neighbor into PQ
+              END FOR
+          END WHILE
+waterJug probelm
+
+               CREATE queue Q
+               CREATE set Visited
+
+               ENQUEUE (0,0)
+               ADD (0,0) to Visited
+
+               WHILE Q not empty DO
+                   (x,y) ← DEQUEUE Q
+
+                   IF x = Target OR y = Target THEN
+                       PRINT "Target Reached"
+                       EXIT
+                   END IF
+
+                   GENERATE possible states
+                   ADD unvisited states to Q
+               END WHILE
+
+               PRINT "Target Not Possible"  
