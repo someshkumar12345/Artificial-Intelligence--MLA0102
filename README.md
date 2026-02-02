@@ -123,3 +123,21 @@ waterJug probelm
                END WHILE
 
                PRINT "Target Not Possible"  
+Decision tree
+
+               IF all records belong to same class THEN
+                   RETURN that class
+               END IF
+
+               IF no attributes left THEN
+                   RETURN majority class
+               END IF
+
+               SELECT best attribute using Information Gain
+               CREATE decision node for that attribute
+
+               FOR each value of selected attribute DO
+                   SPLIT dataset
+                   RECURSIVELY build subtree
+               END FOR
+             
